@@ -2105,7 +2105,7 @@ L01228 MOVEQ   #$0C,D4
 L0122A MOVE.W  D4,$00AA(A6)   * SV.FSTAT
 L0122E RTS
 
-      include flp1_mdv_main
+      include mdv_main
 
 * clock-traps       
 
@@ -4054,7 +4054,7 @@ L0297C DC.W    $0000
        DC.W    $FFC0
        DC.W    $FFF0
 
-     include flp1_mdv_sys
+     include mdv_sys
 
 * execution of command to 8049
 L02C72 MOVE    SR,-(A7)    * transmission with 8049 rts=rte
@@ -4231,7 +4231,8 @@ L02E18 JSR     L0380A(PC)    * IO.QTEST  receive ser#
        JSR     L02F9A(PC)
        MOVE.B  D1,D4
        ANDI.W  #$003F,D4
-       BEQ.S   L02E56(PC)
+;       BEQ.S   L02E56(PC)		* Error : unexpected characters at end of statement <(PC)>
+	BEQ.S   L02E56
        SUBQ.W  #1,D4
 L02E36 JSR     L02F9A(PC)
        TST.B   -$0002(A2)
@@ -6430,21 +6431,21 @@ L0417E MOVEQ   #$00,D0
        EXG     D0,D1
        RTS
 
-       include flp1_arithm_asm
+       include arithm_asm
 
-       include flp1_BASIC1_asm
+       include BASIC1_asm
 
-       include flp1_mdv_routines
+       include mdv_routines
 
-       include flp1_net_routines
+       include net_routines
 
-       include flp1_basic2_asm
+       include basic2_asm
 
-       include flp1_basic_commands
+       include basic_commands
 
-       include flp1_basic3_asm
+       include basic3_asm
 
-       include flp1_charfount_asm
+       include charfount_asm
 
 L0B352 ANDI.W #$0007,D2
        ANDI.W #$003F,D1
@@ -6548,7 +6549,7 @@ L0B450 MOVEM.L   (A7)+,D3/D4/D5/A3
        ADDQ.L     #4,(A7)
 oB456 RTS
 
-      include flp1_Keyboard_asm
+      include Keyboard_asm
 
 
 L0B56C MOVEM.L   D1/D2/D3/A1,-(A7)
@@ -6615,10 +6616,12 @@ L0B60C MOVE.B   D2,D1
 L0B60E MOVEM.L (A7)+,D0/D1/D2/A1
        RTS
 
-       include flp1_tra_tab
+       include tra_tab
 
-       include flp1_sys_mess
+       include sys_mess
 
+       include 1654_dcb0
+;	include 5326_dbc0
         
         ORG $BFE2
 

@@ -108,7 +108,8 @@ ob8b0   dc.b 'F1...monitor'
         dc.b 'F2...TV'
         dc.w $0A00
         dc.w $001E
-        dc.b '  1983 Sinclair Research Ltd '
+;       dc.b '  1983 Sinclair Research Ltd '
+        dc.b '  2023 Sinclair Research Ltd '
         dc.w $0017
         dc.b 'during WHEN processing'
         dc.w $0a00

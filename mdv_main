@@ -15,7 +15,8 @@ L01230 DC.L    $00000000   * free for link pointer
        DC.L    L05000   * entry addr format
        DC.L    $428     * lenght of physi. def. block
        DC.W    $03
-       DC.W    'MDV'
+;       DC.W    'MDV'		* Error : Cannot fit value 0x4d4456 (5063766) into word
+       DC.L    'MDV'
        
 L0125A 
        MOVEM.L D0/D2/D4-D7/A4-A5,-(A7) * main mdv
